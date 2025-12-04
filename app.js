@@ -28,8 +28,17 @@ let cps = 0;
 // shop upgrades
 
 // fetch the upgrades from the API
-
-// create multiple dom elements to contain the upgrades (loop)
+async function fetchShopData() {
+  const response = await fetch(
+    "https://cookie-upgrade-api.vercel.app/api/upgrades"
+  );
+  console.log("Shop Data:", response);
+  //   translate / pass data into json
+  const data = await response.json();
+  console.log(data);
+  // return so we can use it out of scope
+  return data;
+}
 
 // TODO: create DOM elements for the shop upgrades
 // 1. create element
@@ -37,6 +46,23 @@ let cps = 0;
 // 3. append it to the DOM
 
 // after you complete this task, you should see the upgrades in the shop container
+
+// get the shop container element in the DOM to append them to
+const shopContainer = document.getElementById("shop-container");
+
+async function renderShop() {
+  const shopData = await fetchShopData();
+
+  for (let i = 0; i < shopData.length; i++) {
+    // create element in DOM for each shop element to live in
+    const shopElement = document.createElement("div");
+    // add text from array into each element
+    shopElement.textContent = shopData[i].name;
+    // append that text into the div elements
+    shopContainer.appendChild(shopElement);
+  }
+}
+renderShop();
 
 // TODO: create function(s) to handle the purchase action
 // the user needs a button to buy the item
