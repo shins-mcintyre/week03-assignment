@@ -19,8 +19,8 @@ console.log("Hello world");
 // data storage
 
 // global scope
-let totalCookieCount = 0;
-let cps = 0;
+let totalFlowerCount = 0;
+let fps = 0;
 
 // if there is data already in local storage, update stats with this data so the user picks it up where they left off
 
@@ -64,6 +64,28 @@ async function renderShop() {
 }
 renderShop();
 
+// TODO: create a function which increases the flower counter by 1 every time the flower is clicked
+// event listener = click, event handler = flower count value increases by 1
+
+const flowerIcon = document.getElementById("flower-icon");
+const clickFeedback = document.getElementById("click-feedback");
+const flowerCounter = document.getElementById("flower-counter");
+const flowersPerSecond = document.getElementById("fps-counter");
+
+// set up event for the click feedback to appear
+flowerIcon.addEventListener("click", function () {
+  clickFeedback.textContent = "+1 flower!";
+  setTimeout(function () {
+    clickFeedback.textContent = " ";
+  }, 300);
+  // and counter to increase
+  totalFlowerCount = totalFlowerCount + 1;
+  //   check it's working in console.log - it is!
+  console.log(totalFlowerCount);
+  //   use this to update the counter on screen
+  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+});
+
 // TODO: create function(s) to handle the purchase action
 // the user needs a button to buy the item
 // when the user clicks the button:
@@ -77,8 +99,14 @@ renderShop();
 // use this code in whatever way you think it works
 
 setInterval(function () {
-  totalCookieCount += cps;
+  totalFlowerCount += fps;
   // totalCookieCount = totalCookieCount + cps
   // update the DOM to reflect the changes in values
   // save the values in local storage
 }, 1000);
+
+// 1. Add buttons to each of the shop elements (using a loop)
+// 2. Add logic to first button - on click, if totalFlowerCount < 100 with pop up message you don't have enough flowers to buy this. if totalFlowerCount >= 100, reduce totalFlowerCount by 100 and implement a function where flowers counter increases by 1 every second (look at stopwatch code for this)
+// 3. Make the data available in local host so it remains when refreshed
+// 4. Do this same thing for all shop items
+// 5. Make everything pretty - according to the design principles

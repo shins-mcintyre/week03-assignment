@@ -19,3 +19,7 @@ header {
 #shop-container {
   background-color: darkkhaki;
 }
+
+#flower-icon {
+  cursor: pointer;
+}

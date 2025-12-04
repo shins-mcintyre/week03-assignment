@@ -13,13 +13,20 @@
     </header>
 
     <!-- a clickable elememt - e.g. button/image-->
-    <img src="./media/flower.gif" alt="clickable flower icon" />
+    <section id="garden">
+      <img
+        src="./media/flower.gif"
+        alt="clickable flower icon"
+        id="flower-icon"
+      />
+      <p id="click-feedback"></p>
+    </section>
 
     <!-- Game info -->
     <section id="game-info">
       <h2>Flower Counter</h2>
-      <p>Total flower count: 0</p>
-      <p>Flowers per second (cps): 0</p>
+      <p id="flower-counter">Total flower count: 0</p>
+      <p id="fps-counter">Flowers per second (cps): 0</p>
     </section>
 
     <!-- container for shop upgrades -->
