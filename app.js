@@ -136,13 +136,15 @@ async function renderShop() {
   for (let i = 0; i < shopData.length; i++) {
     // create element in DOM for each shop element to live in
     const shopElement = document.createElement("div");
+    shopElement.classList.add("shop-element");
     // add text from array into each element
     shopElement.textContent = `${shopData[i].name} - Price: ${shopData[i].cost}🌼`;
     // append that text into the div elements
     shopUpgrades.appendChild(shopElement);
     const purchaseButton = document.createElement("button");
+    purchaseButton.classList.add("purchase-button");
     purchaseButton.textContent = `Purchase upgrade`;
-    shopUpgrades.appendChild(purchaseButton);
+    shopElement.appendChild(purchaseButton);
 
     // add logic for event listener etc. here
     // 2. Add logic to first button - on click, if totalFlowerCount < 100 with pop up message you don't have enough flowers to buy this. if totalFlowerCount >= 100, reduce totalFlowerCount by 100 and implement a function where flowers counter increases by 1 every second (look at stopwatch code for this)
