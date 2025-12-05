@@ -18,13 +18,19 @@ console.log("Hello world");
 // ======================================================================
 // data storage
 
+// TODO: create DOM elements
+// 1. create element
+// 2. assign value to its property (textContent)
+// 3. append it to the DOM
 // global scope
 let totalFlowerCount = 0;
 let fps = 0;
 const flowerIcon = document.getElementById("flower-icon");
 const clickFeedback = document.getElementById("click-feedback");
 const flowerCounter = document.getElementById("flower-counter");
-const flowersPerSecond = document.getElementById("fps-counter");
+const fpsCounter = document.getElementById("fps-counter");
+const shopContainer = document.getElementById("shop-container");
+const gardenContainer = document.getElementById("garden");
 
 // if there is data already in local storage, update stats with this data so the user picks it up where they left off
 
@@ -44,17 +50,14 @@ async function fetchShopData() {
   return data;
 }
 
-// TODO: create DOM elements for the shop upgrades
-// 1. create element
-// 2. assign value to its property (textContent)
-// 3. append it to the DOM
+// TODO: create function(s) to handle the purchase action
+// the user needs a button to buy the item
+// when the user clicks the button:
+// - subtract cost of upgrade from totalCookieCount
+// - add increase value to cps
+// - save new values in local storage
 
-// after you complete this task, you should see the upgrades in the shop container
-
-// get the shop container element in the DOM to append them to
-const shopContainer = document.getElementById("shop-container");
-const gardenContainer = document.getElementById("garden");
-
+// === THE BIG SHOP FUNCTION ======
 async function renderShop() {
   const shopData = await fetchShopData();
 
@@ -80,6 +83,7 @@ async function renderShop() {
         setTimeout(function () {
           purchaseFeedback.textContent = " ";
         }, 1000);
+        return;
       } else if (totalFlowerCount >= shopData[i].cost) {
         // feedback message
         purchaseFeedback.textContent = "Congrats! You purchased an upgrade!";
@@ -87,25 +91,31 @@ async function renderShop() {
           purchaseFeedback.textContent = " ";
         }, 1000);
 
-        // totalFlowerCount reduces
-        totalFlowerCount = totalFlowerCount - shopData[i].cost;
+        // totalFlowerCount reduces and fps increases
+        totalFlowerCount -= shopData[i].cost;
+        // totalFlowerCount = totalFlowerCount - shopData[i].cost;
+        fps += shopData[i].increase;
+        // fps = shopData[i].increase;
 
-        // per second flower count to kick off
-        setInterval(function () {
-          totalFlowerCount += fps;
-          // totalCookieCount = totalCookieCount + cps
-          // update the DOM to reflect the changes in values
-          // save the values in local storage
-        }, 1000);
+        // update DOM
+        flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+        fpsCounter.textContent = `Flowers per second (fps): ${fps}`;
+        // fpsCounter.textContent = `Flowers per second (fps): ${shopData[i].increase}`;
       }
       shopContainer.appendChild(purchaseFeedback);
     });
   }
 }
-renderShop();
 
 // TODO: create a function which increases the flower counter by 1 every time the flower is clicked
 // event listener = click, event handler = flower count value increases by 1
+
+// ===== per second flower count to kick off =====
+setInterval(function () {
+  totalFlowerCount += fps;
+  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+}, 1000);
+renderShop();
 
 // set up event for the click feedback to appear
 flowerIcon.addEventListener("click", function () {
@@ -121,13 +131,6 @@ flowerIcon.addEventListener("click", function () {
   flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
   gardenContainer.appendChild(clickFeedback);
 });
-
-// TODO: create function(s) to handle the purchase action
-// the user needs a button to buy the item
-// when the user clicks the button:
-// - subtract cost of upgrade from totalCookieCount
-// - add increase value to cps
-// - save new values in local storage
 
 // ==========================================================================
 
