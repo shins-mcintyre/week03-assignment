@@ -10,14 +10,48 @@ body {
 
 header {
   background-color: beige;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#garden {
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #game-info {
   background-color: beige;
+  height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  font-size: 2rem;
+}
+
+#pause-button {
+  padding: 0.5rem;
 }
 
 #shop-container {
   background-color: darkkhaki;
+}
+
+#shop-upgrades {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+h2 {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 #flower-icon {

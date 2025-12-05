@@ -24,12 +24,15 @@ console.log("Hello world");
 // global scope
 let totalFlowerCount = 0;
 let fps = 0;
+let paused = false;
 const flowerIcon = document.getElementById("flower-icon");
 const clickFeedback = document.getElementById("click-feedback");
 const flowerCounter = document.getElementById("flower-counter");
 const fpsCounter = document.getElementById("fps-counter");
 const shopContainer = document.getElementById("shop-container");
+const shopUpgrades = document.getElementById("shop-upgrades");
 const gardenContainer = document.getElementById("garden");
+const pauseBtn = document.getElementById("pause-button");
 
 // == LOCAL STORAGE ====
 // TODO: set up local data storage
@@ -41,8 +44,8 @@ if (savedFlowerCount !== null) totalFlowerCount = savedFlowerCount;
 if (savedFPS !== null) fps = savedFPS;
 
 // Update DOM
-flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
-fpsCounter.textContent = `Flowers per second (fps): ${fps}`;
+flowerCounter.textContent = `You have ${totalFlowerCount} flowers`;
+fpsCounter.textContent = `(${fps} fps)`;
 
 // function to save new counts for both counters
 function saveFlowers() {
@@ -75,9 +78,11 @@ async function fetchShopData() {
 
 // ===== FLOWER COUNTER =====
 setInterval(function () {
-  totalFlowerCount += fps;
-  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
-  saveFlowers();
+  if (!paused) {
+    totalFlowerCount += fps;
+    flowerCounter.textContent = `You have ${totalFlowerCount} flowers`;
+    saveFlowers();
+  }
 }, 1000);
 renderShop();
 
@@ -92,9 +97,16 @@ flowerIcon.addEventListener("click", function () {
   //   check it's working in console.log - it is!
   console.log(totalFlowerCount);
   //   use this to update the counter on screen
-  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+  flowerCounter.textContent = `You have ${totalFlowerCount} flowers`;
   gardenContainer.appendChild(clickFeedback);
   saveFlowers();
+});
+
+// set up logic for the pause button - chat GPT helped with how to change the text from pause to play
+pauseBtn.addEventListener("click", function () {
+  // when the game is running, paused = false (as set out above), so when the game is not running, paused = true (or !paused)
+  paused = !paused;
+  pauseBtn.textContent = paused ? "Play" : "Pause";
 });
 
 // TODO: create function(s) to handle the purchase action
@@ -104,20 +116,33 @@ flowerIcon.addEventListener("click", function () {
 // - add increase value to cps
 // - save new values in local storage
 
+// UPDATE NAMES IN ARRAY
+
 // === THE BIG SHOP FUNCTION ======
 async function renderShop() {
   const shopData = await fetchShopData();
+  //   update names of shop items in the array
+  shopData[0].name = "Watering Can";
+  shopData[1].name = "Shovel";
+  shopData[2].name = "Flower Feed";
+  shopData[3].name = "Hosepipe";
+  shopData[4].name = "Super Duper Fertiliser";
+  shopData[5].name = "Release the Bees!";
+  shopData[6].name = "Sprinklers";
+  shopData[7].name = "Hire a Gardener";
+  shopData[8].name = "Pollen Avalanche!!";
+  shopData[9].name = "MAXXX FLOWER POTION";
 
   for (let i = 0; i < shopData.length; i++) {
     // create element in DOM for each shop element to live in
     const shopElement = document.createElement("div");
     // add text from array into each element
-    shopElement.textContent = shopData[i].name;
+    shopElement.textContent = `${shopData[i].name} - Price: ${shopData[i].cost}🌼`;
     // append that text into the div elements
-    shopContainer.appendChild(shopElement);
+    shopUpgrades.appendChild(shopElement);
     const purchaseButton = document.createElement("button");
-    purchaseButton.textContent = `Purchase upgrade ${shopData[i].id}, Price: ${shopData[i].cost} flowers`;
-    shopContainer.appendChild(purchaseButton);
+    purchaseButton.textContent = `Purchase upgrade`;
+    shopUpgrades.appendChild(purchaseButton);
 
     // add logic for event listener etc. here
     // 2. Add logic to first button - on click, if totalFlowerCount < 100 with pop up message you don't have enough flowers to buy this. if totalFlowerCount >= 100, reduce totalFlowerCount by 100 and implement a function where flowers counter increases by 1 every second (look at stopwatch code for this)
@@ -145,8 +170,8 @@ async function renderShop() {
         // fps = shopData[i].increase;
 
         // update DOM
-        flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
-        fpsCounter.textContent = `Flowers per second (fps): ${fps}`;
+        flowerCounter.textContent = `You have ${totalFlowerCount} flowers`;
+        fpsCounter.textContent = `(${fps} fps)`;
         // fpsCounter.textContent = `Flowers per second (fps): ${shopData[i].increase}`;
       }
       shopContainer.appendChild(purchaseFeedback);
