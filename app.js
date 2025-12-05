@@ -15,7 +15,6 @@ console.log("Hello world");
 // tip on local storage:
 // make sure the local storage values are updated after the user buys an upgrade AND when the user clicks on the cookie
 
-// ======================================================================
 // data storage
 
 // TODO: create DOM elements
@@ -31,6 +30,27 @@ const flowerCounter = document.getElementById("flower-counter");
 const fpsCounter = document.getElementById("fps-counter");
 const shopContainer = document.getElementById("shop-container");
 const gardenContainer = document.getElementById("garden");
+
+// == LOCAL STORAGE ====
+// TODO: set up local data storage
+const savedFlowerCount = JSON.parse(localStorage.getItem("flowerCount"));
+const savedFPS = JSON.parse(localStorage.getItem("fps"));
+
+// what do these lines do?
+if (savedFlowerCount !== null) totalFlowerCount = savedFlowerCount;
+if (savedFPS !== null) fps = savedFPS;
+
+// Update DOM
+flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+fpsCounter.textContent = `Flowers per second (fps): ${fps}`;
+
+// function to save new counts for both counters
+function saveFlowers() {
+  localStorage.setItem("flowerCount", JSON.stringify(totalFlowerCount));
+  localStorage.setItem("fps", JSON.stringify(fps));
+}
+
+// ======================================================================
 
 // if there is data already in local storage, update stats with this data so the user picks it up where they left off
 
@@ -49,6 +69,33 @@ async function fetchShopData() {
   // return so we can use it out of scope
   return data;
 }
+
+// TODO: create a function which increases the flower counter by 1 every time the flower is clicked
+// event listener = click, event handler = flower count value increases by 1
+
+// ===== FLOWER COUNTER =====
+setInterval(function () {
+  totalFlowerCount += fps;
+  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+  saveFlowers();
+}, 1000);
+renderShop();
+
+// set up event for the click feedback to appear
+flowerIcon.addEventListener("click", function () {
+  clickFeedback.textContent = "+1 flower!";
+  setTimeout(function () {
+    clickFeedback.textContent = " ";
+  }, 300);
+  // and counter to increase
+  totalFlowerCount = totalFlowerCount + 1;
+  //   check it's working in console.log - it is!
+  console.log(totalFlowerCount);
+  //   use this to update the counter on screen
+  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
+  gardenContainer.appendChild(clickFeedback);
+  saveFlowers();
+});
 
 // TODO: create function(s) to handle the purchase action
 // the user needs a button to buy the item
@@ -69,7 +116,7 @@ async function renderShop() {
     // append that text into the div elements
     shopContainer.appendChild(shopElement);
     const purchaseButton = document.createElement("button");
-    purchaseButton.textContent = `Purchase upgrade ${shopData[i].id}`;
+    purchaseButton.textContent = `Purchase upgrade ${shopData[i].id}, Price: ${shopData[i].cost} flowers`;
     shopContainer.appendChild(purchaseButton);
 
     // add logic for event listener etc. here
@@ -103,34 +150,10 @@ async function renderShop() {
         // fpsCounter.textContent = `Flowers per second (fps): ${shopData[i].increase}`;
       }
       shopContainer.appendChild(purchaseFeedback);
+      saveFlowers();
     });
   }
 }
-
-// TODO: create a function which increases the flower counter by 1 every time the flower is clicked
-// event listener = click, event handler = flower count value increases by 1
-
-// ===== per second flower count to kick off =====
-setInterval(function () {
-  totalFlowerCount += fps;
-  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
-}, 1000);
-renderShop();
-
-// set up event for the click feedback to appear
-flowerIcon.addEventListener("click", function () {
-  clickFeedback.textContent = "+1 flower!";
-  setTimeout(function () {
-    clickFeedback.textContent = " ";
-  }, 300);
-  // and counter to increase
-  totalFlowerCount = totalFlowerCount + 1;
-  //   check it's working in console.log - it is!
-  console.log(totalFlowerCount);
-  //   use this to update the counter on screen
-  flowerCounter.textContent = `Total flower count: ${totalFlowerCount}`;
-  gardenContainer.appendChild(clickFeedback);
-});
 
 // ==========================================================================
 

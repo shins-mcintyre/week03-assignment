@@ -46,3 +46,15 @@
 // }
 
 // ==================================================================
+
+// TODO: Save the counts of flower counter and fps into local storage
+// // 1. stringigy the data
+// const stringifiedFlowerCount = JSON.stringify(totalFlowerCount);
+// const stringifiedFPS = JSON.stringify(fps);
+
+// // 2. add stringfied data to local storage
+// localStorage.setItem("local flower count", stringifiedFlowerCount);
+// localStorage.setItem("local fps", stringifiedFPS);
+
+// const flowerCountValue = localStorage.getItem("local flower count");
+// const fpsValue = localStorage.getItem("local fps");

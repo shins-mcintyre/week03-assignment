@@ -24,7 +24,7 @@ Required
 ##Use setInterval to increment the cookie count and manage the game state each second.
 Managing the game state includes saving progress and updating the DOM.
 
-- I have managed to implement this (finally!) after lots of trial and error - as I initially was putting the interval function into the loop. However , currently I do not have it set up so that the purchased items add up (if fps is 1 and I purchase the first upgrade again, the counter does not increase to 2 flowers per second like it the cookie game) - I will see if implementing local storage has any effect on this, and if not if I have time I will try to work this out
+- I have managed to implement this (finally!) after lots of trial and error - as I initially was putting the interval function into the loop.
 
 🎯 Were there any requirements or goals that you were unable to achieve?
 🎯 If so, what was it that you found difficult about these tasks?
