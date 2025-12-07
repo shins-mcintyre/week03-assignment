@@ -33,6 +33,7 @@ const shopContainer = document.getElementById("shop-container");
 const shopUpgrades = document.getElementById("shop-upgrades");
 const gardenContainer = document.getElementById("garden");
 const pauseBtn = document.getElementById("pause-button");
+const clickSound = new Audio("./media/click.mp3");
 
 // create an array for the shop icons:
 const shopIcons = [
@@ -102,6 +103,8 @@ renderShop();
 
 // set up event for the click feedback to appear
 flowerIcon.addEventListener("click", function () {
+  clickSound.currentTime = 0;
+  clickSound.play();
   clickFeedback.textContent = "+1 flower!";
   setTimeout(function () {
     clickFeedback.textContent = " ";
@@ -112,7 +115,7 @@ flowerIcon.addEventListener("click", function () {
   console.log(totalFlowerCount);
   //   use this to update the counter on screen
   flowerCounter.textContent = `You have ${totalFlowerCount} flowers`;
-  gardenContainer.appendChild(clickFeedback);
+  // gardenContainer.appendChild(clickFeedback);
   saveFlowers();
 });
 
