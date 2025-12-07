@@ -2,93 +2,116 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 body {
-  background-color: peru;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 3fr 2fr 4fr;
+  background-color: rgb(175, 212, 120);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
   background-color: beige;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  /* height: 5rem; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+#page-container {
+  max-width: 800px;
+  grid-row-gap: 2rem;
+  /* display: grid; */
+  /* grid-template-rows: auto auto auto; */
 }
 
 #garden {
   background-color: rgb(175, 212, 120);
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-/* height: 25rem;
   display: flex;
   justify-content: center;
-  align-items: center; */
-/* } */
+  align-items: center;
+}
 
 #game-info {
-  background-color: beige;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  /* height: 10rem;
+  background-color: rgb(175, 212, 120);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 3rem; */
-  font-size: 2rem;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+
+#flower-counter {
+  background-color: rgb(175, 212, 120);
+  padding: 3rem;
+}
+
+#fps-counter {
+  background-color: rgb(175, 212, 120);
+  padding: 3rem;
 }
 
 #pause-button {
   padding: 0.5rem;
+  margin-right: 3rem;
 }
 
 #shop-container {
-  background-color: darkkhaki;
-  grid-row-start: 4;
-  grid-row-end: 5;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  background-color: beige;
 }
 
-/* #shop-upgrades {
-  display: flex;
+#shop-upgrades {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  padding: 1rem 3%;
+  /* display: flex;
   justify-content: flex-start;
   padding-top: 1rem;
-  /* padding-left: 25% */
-/* gap: 1rem;
-} */
+  padding-left: 3%;
+  padding-right: 3%;
+  gap: 1rem; */
+}
 
-/* h2 {
+h2 {
   padding: 1rem;
   display: flex;
-  justify-content: center;
-} */
+}
 
 .shop-element {
-  background-color: pink;
+  background-color: rgba(248, 182, 39, 0.548);
   font-size: 1rem;
-  border-color: black;
-  border-radius: 5%;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 150px;
-  width: 150px; */
+  height: 200px;
+  width: 120px;
+  font: beige;
 }
 
 #flower-icon {
   cursor: pointer;
+  height: 250px;
+}
+
+.purchase-button {
+  margin: 0.3rem;
+}
+
+.shop-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0.5rem auto;
+  display: block;
+}
+
+.shop-titles {
+  font: beige;
 }

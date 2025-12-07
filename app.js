@@ -34,6 +34,20 @@ const shopUpgrades = document.getElementById("shop-upgrades");
 const gardenContainer = document.getElementById("garden");
 const pauseBtn = document.getElementById("pause-button");
 
+// create an array for the shop icons:
+const shopIcons = [
+  "./media/can.gif",
+  "./media/trowel.png",
+  "./media/rose.png",
+  "./media/hose.png",
+  "./media/grass.png",
+  "./media/bee.gif",
+  "./media/water.png",
+  "./media/gardener.png",
+  "./media/pollen.png",
+  "./media/potion.png",
+];
+
 // == LOCAL STORAGE ====
 // TODO: set up local data storage
 const savedFlowerCount = JSON.parse(localStorage.getItem("flowerCount"));
@@ -131,20 +145,31 @@ async function renderShop() {
   shopData[6].name = "Sprinklers";
   shopData[7].name = "Hire a Gardener";
   shopData[8].name = "Pollen Avalanche!!";
-  shopData[9].name = "MAXXX FLOWER POTION";
+  shopData[9].name = "FLOWER POTION";
 
   for (let i = 0; i < shopData.length; i++) {
     // create element in DOM for each shop element to live in
     const shopElement = document.createElement("div");
     shopElement.classList.add("shop-element");
+    // add icons
+    const icon = document.createElement("img");
+    icon.src = shopIcons[i];
+    icon.classList.add("shop-icon");
+    shopElement.appendChild(icon);
     // add text from array into each element
-    shopElement.textContent = `${shopData[i].name} - Price: ${shopData[i].cost}🌼`;
+    const title = document.createElement("p");
+    title.classList.add("shop-titles");
+    title.textContent = `${shopData[i].name} - Price: ${shopData[i].cost}🌼`;
+    shopElement.appendChild(title);
+    // shopElement.textContent = `${shopData[i].name} - Price: ${shopData[i].cost}🌼`;
     // append that text into the div elements
-    shopUpgrades.appendChild(shopElement);
+    // shopUpgrades.appendChild(shopElement);
     const purchaseButton = document.createElement("button");
     purchaseButton.classList.add("purchase-button");
     purchaseButton.textContent = `Purchase upgrade`;
     shopElement.appendChild(purchaseButton);
+
+    shopUpgrades.appendChild(shopElement);
 
     // add logic for event listener etc. here
     // 2. Add logic to first button - on click, if totalFlowerCount < 100 with pop up message you don't have enough flowers to buy this. if totalFlowerCount >= 100, reduce totalFlowerCount by 100 and implement a function where flowers counter increases by 1 every second (look at stopwatch code for this)

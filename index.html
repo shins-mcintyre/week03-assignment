@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker Game</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -12,30 +18,32 @@
       <h1>🌼FLOWER GARDEN 3000🌼</h1>
     </header>
 
-    <!-- a clickable elememt - e.g. button/image-->
-    <section id="garden">
-      <img
-        src="./media/flower.gif"
-        alt="clickable flower icon"
-        id="flower-icon"
-      />
-      <p id="click-feedback"></p>
-    </section>
+    <div id="page-container">
+      <!-- a clickable elememt - e.g. button/image-->
+      <section id="garden">
+        <img
+          src="./media/flower.gif"
+          alt="clickable flower icon"
+          id="flower-icon"
+        />
+        <p id="click-feedback"></p>
+      </section>
 
-    <!-- Game info -->
-    <section id="game-info">
-      <!-- <h2>Flower Counter</h2> -->
-      <p id="flower-counter">Total flower count: 0</p>
-      <p id="fps-counter">Flowers per second (cps): 0</p>
-      <button id="pause-button">Pause</button>
-    </section>
+      <!-- Game info -->
+      <section id="game-info">
+        <!-- <h2>Flower Counter</h2> -->
+        <p id="flower-counter">Total flower count: 0</p>
+        <p id="fps-counter">Flowers per second (cps): 0</p>
+        <button id="pause-button">Pause</button>
+      </section>
 
-    <!-- container for shop upgrades -->
-    <section id="shop-container">
-      <h2>The Garden Centre</h2>
-      <div id="shop-upgrades"></div>
-      <p id="purchase-feedback"></p>
-      <!-- <button id="purchase-button">Purchase</button> -->
-    </section>
+      <!-- container for shop upgrades -->
+      <section id="shop-container">
+        <h2>The Garden Centre</h2>
+        <div id="shop-upgrades"></div>
+        <p id="purchase-feedback"></p>
+        <!-- <button id="purchase-button">Purchase</button> -->
+      </section>
+    </div>
   </body>
 </html>
