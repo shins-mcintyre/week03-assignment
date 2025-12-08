@@ -35,9 +35,9 @@ Optional
 🏹 Feel free to add any other reflections you would like to share about your submission, for example:
 
 Requesting feedback about a specific part of your submission.
-What useful external sources helped you complete the assignment (e.g Youtube tutorials)?
-What errors or bugs did you encounter while completing your assignment? How did you solve them?
-What went really well and what could have gone better?
+What useful external sources helped you complete the assignment (e.g Youtube tutorials)? - W3schools, MDN, chat gpt
+What errors or bugs did you encounter while completing your assignment? How did you solve them? - at every stage.. I found writing comments explaining to myself what each line of code is doing helped. Mainly errors were from putting code in the wrong place. I also learned that 'return' stops the function and nothing after it will run
+What went really well and what could have gone better? - I actually managed to get the logic done quicker than I expected, but I find the CSS a bit tricky still, especially positioning - that required loads of trial and error
 
 Stretch User Stories
 🐿️ As a developer, I want to use a single function to handle all upgrades, so that the code is more organized and easier to maintain.
@@ -45,6 +45,8 @@ Stretch User Stories
 - I figured out how to do this from the get-go as it was actaully easier than trying to write everything separately - I thought I would struggle but actually my guesses of how to do this worked - like a miracle!
 
 🐿️ As a user, I want the game to include animations, sound effects, or other visual effects, so that my experience is more engaging and enjoyable.
-🐿️ As a developer, I want the README to provide a clear project description, deployment instructions, and other relevant information, so that it’s easy to understand and use the project.
-🐿️ As a user, I want the game to handle errors well, so that I have a smooth experience even when something goes wrong.
-🐿️ As a user, I want a menu to adjust game options like sound effects and display preferences, so that I can customize the game to my liking.
+
+- i added a pop up message and audio when the flower is clicked to make it a bit more fun and provide feedback
+  🐿️ As a developer, I want the README to provide a clear project description, deployment instructions, and other relevant information, so that it’s easy to understand and use the project.
+  🐿️ As a user, I want the game to handle errors well, so that I have a smooth experience even when something goes wrong.
+  🐿️ As a user, I want a menu to adjust game options like sound effects and display preferences, so that I can customize the game to my liking.
